@@ -177,8 +177,8 @@ class AppTest {
         BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
         when(imageService.imageContainsCat(any(BufferedImage.class), anyFloat())).thenReturn(true);
 
-        securityService.processImage(img);  // flips internal cat flag to true
-        reset(securityRepository);          // clear previous interactions
+        securityService.processImage(img);  
+        reset(securityRepository);         
 
         securityService.setArmingStatus(ArmingStatus.ARMED_HOME);
 
@@ -255,7 +255,6 @@ class AppTest {
     void fakeImageService_returnsBoolean() {
         FakeImageService fake = new FakeImageService();
         BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
-        // just ensure it returns a boolean (no exceptions)
         assertNotNull(fake.imageContainsCat(img, 50.0f));
     }
 
@@ -280,9 +279,6 @@ class AppTest {
         assertTrue(s1.compareTo(s2) < 0);
         assertTrue(s2.compareTo(s1) > 0);
     }
-    //git config --global user.email "satyasatpathyjns32@gmail.com"
-    //git config --global user.name "Ssjsatya"
-
 
     @Test
     void setArmingStatus_systemArmed_allSensorsInactive_single() {
